@@ -1,0 +1,19 @@
+*&---------------------------------------------------------------------*
+*& Report z31m_017_maxcase
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT z31m_017_maxcase.
+DATA my_integer1 TYPE I VALUE 20.
+DATA my_integer2 TYPE I VALUE 20.
+DATA result TYPE I.
+CONSTANTS MAX_LOAD TYPE I VALUE 20.
+
+WRITE: my_integer1.
+WRITE: my_integer2.
+
+result = my_integer1 + my_integer2.
+
+WRITE: result.
+WRITE: /.
+WRITE: MAX_LOAD.
