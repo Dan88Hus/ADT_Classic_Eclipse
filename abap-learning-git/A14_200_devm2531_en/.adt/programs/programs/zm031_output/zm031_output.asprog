@@ -1,0 +1,66 @@
+*&---------------------------------------------------------------------*
+*& Report zm031_output
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zm031_output.
+
+WRITE: |Current Client { SY-MANDT }|.
+NEW-LINE.
+WRITE: |Current Date: { SY-UZEIT }|.
+NEW-LINE.
+
+WRITE: |My Name is { SY-UNAME } and my username length is { strlen( sy-uname ) }|.
+
+**********
+* here is ocmment
+***********
+"""
+"
+*primitive data types,
+*Char,
+*Date,
+*Float,
+*Integer,
+*Numerical text,
+*packed number,
+*hexadecimal,
+*time
+"""
+
+NEW-LINE.
+DATA hus(5) TYPE c VALUE 'hus'.
+WRITE hus.
+ULINE.
+
+
+
+DATA text_line TYPE C LENGTH 40.
+text_line = 'A Chapter on Data Types'.
+Write text_line.
+
+DATA text_string TYPE STRING.
+text_string = 'A Program in ABAP'.
+Write / text_string.
+
+DATA d_date TYPE D.
+d_date = SY-DATUM.
+Write / d_date.
+Write: / d_date.
+SKIP.
+ULINE.
+    PARAMETERS: NAME(10) TYPE C,
+    CLASS TYPE I,
+    SCORE TYPE P DECIMALS 2,
+    CONNECT TYPE MARA-MATNR.
+
+DATA a TYPE i VALUE 0.
+
+WHILE a <> 8.
+    WRITE: / 'a is: ', a.
+    a = a + 1.
+ENDWHILE.
+
+DO 15 TIMES.
+    WRITE: / 'Hello'.
+ENDDO.

@@ -1,0 +1,35 @@
+*&---------------------------------------------------------------------*
+*& Report zex3_week3
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zex3_week3.
+
+DATA:
+  input1   TYPE ZINT4INPUT VALUE 200,
+  input2   TYPE ZINT4INPUT VALUE 100,
+  operator TYPE ZCHAR4INPUT VALUE '+',
+  result   TYPE ZINT4INPUT VALUE 0.
+
+CASE  operator.
+  WHEN '+'.
+    result = input1 + input2.
+  WHEN '-'.
+    IF input1 > input2.
+      result = input1 - input2.
+    ELSE.
+      result = input2 - input1.
+    ENDIF.
+  WHEN '*'.
+    result = input1 * input2.
+  WHEN '/'.
+    IF input1 = 0 OR input2 = 0.
+      WRITE: / 'Division by zero prevented.'.
+    ELSEIF input1 > input2.
+      result = input1 / input2.
+    ELSE.
+      result = input2 / input1.
+    ENDIF.
+ENDCASE.
+
+WRITE: 'The Result of' , input1 , operator , input2 , 'is : ' , result.

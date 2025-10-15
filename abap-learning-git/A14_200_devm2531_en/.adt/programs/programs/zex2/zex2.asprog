@@ -1,0 +1,45 @@
+*&---------------------------------------------------------------------*
+*& Report zex2
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zex2.
+
+
+*"" Step 1: Define data
+*DATA: lv_case_weight TYPE i VALUE 20,     " Weight per suitcase in kg
+*      lv_plane1_weight TYPE i VALUE 2000, " Plane 1 weight in kg (2 tons)
+*      lv_plane2_weight TYPE i VALUE 10000," Plane 2 weight in kg (10 tons)
+*      lv_maxcase1 TYPE i,                 " Result: number of cases for plane 1
+*      lv_maxcase2 TYPE i.                 " Result: number of cases for plane 2
+*
+*" Step 2: Calculation
+*lv_maxcase1 = lv_plane1_weight / lv_case_weight.
+*lv_maxcase2 = lv_plane2_weight / lv_case_weight.
+*
+*" Step 3: Output results
+*WRITE: / 'Suitcase weight (kg):', lv_case_weight,
+*       / 'Plane 1 weight (kg):', lv_plane1_weight,
+*       / 'Max number of cases (Plane 1):', lv_maxcase1,
+*       / 'Plane 2 weight (kg):', lv_plane2_weight,
+*       / 'Max number of cases (Plane 2):', lv_maxcase2.
+*
+
+" Use data elements defined in ABAP Dictionary
+DATA: lv_case_weight  TYPE zde_case_weight VALUE 20,      " kg per suitcase
+      lv_plane1_weight TYPE zde_plane_weight VALUE 2000,  " kg (2 tons)
+      lv_plane2_weight TYPE zde_plane_weight VALUE 10000, " kg (10 tons)
+      lv_maxcase1      TYPE zde_maxcase,                  " Result for Plane 1
+      lv_maxcase2      TYPE zde_maxcase.                  " Result for Plane 2
+
+
+lv_maxcase1 = lv_plane1_weight / lv_case_weight.
+lv_maxcase2 = lv_plane2_weight / lv_case_weight.
+
+
+WRITE: / '==== MAXIMUM SUITCASE CALCULATION ====',
+       / 'Suitcase Weight (kg):', lv_case_weight,
+       / 'Plane 1 Weight (kg):', lv_plane1_weight,
+       / 'Max Cases (Plane 1):', lv_maxcase1,
+       / 'Plane 2 Weight (kg):', lv_plane2_weight,
+       / 'Max Cases (Plane 2):', lv_maxcase2.

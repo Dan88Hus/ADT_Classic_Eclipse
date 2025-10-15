@@ -1,0 +1,21 @@
+*&---------------------------------------------------------------------*
+*& Report z_hello_world
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT z_hello_world.
+
+WRITE: /'Hello World!'.
+
+WRITE: /'Hi', 'Huseyin'.
+WRITE: |SVEN|, |Ozdogan|.
+
+WRITE: strlen('HELLO HUS').
+
+NEW-LINE.
+
+WRITE: SY-datum.
+WRITE: SY-uzeit.
+NEW-LINE.
+WRITE: SY-MANDT.
+WRITE: |SYSTEM USER NAME|, SY-UNAME.
