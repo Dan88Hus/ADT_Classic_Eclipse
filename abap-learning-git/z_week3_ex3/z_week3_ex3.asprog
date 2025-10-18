@@ -1,0 +1,51 @@
+*&---------------------------------------------------------------------*
+*& Report z_week3_ex3
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT z_week3_ex3.
+
+CONSTANTS person_weight TYPE zint4input VALUE 75.
+
+TYPES: BEGIN OF structure_flight,
+         flight       TYPE zchar4input,
+         person       TYPE zint4input,
+         weight       TYPE zint4input,
+         total_weight TYPE zfloat34input,
+       END OF structure_flight.
+
+DATA: lt_flight TYPE TABLE OF structure_flight,
+      wa_flight TYPE structure_flight.
+
+wa_flight-flight = 'Flight 1'.
+wa_flight-person = 250.
+wa_flight-weight = 2000. "kg
+wa_flight-total_weight = ( person_weight * wa_flight-person ) + wa_flight-weight.
+APPEND wa_flight TO lt_flight.
+
+wa_flight-flight = 'Flight 2'.
+wa_flight-person = 290.
+wa_flight-weight = 1000. "kg
+wa_flight-total_weight = ( person_weight * wa_flight-person ) + wa_flight-weight.
+APPEND wa_flight TO lt_flight.
+
+wa_flight-flight = 'Flight 3'.
+wa_flight-person = 190.
+wa_flight-weight = 3000. "kg
+wa_flight-total_weight = ( person_weight * wa_flight-person ) + wa_flight-weight.
+APPEND wa_flight TO lt_flight.
+
+wa_flight-flight = 'Flight 1'.
+wa_flight-person = 175.
+wa_flight-weight = 4000. "kg
+wa_flight-total_weight = ( person_weight * wa_flight-person ) + wa_flight-weight.
+APPEND wa_flight TO lt_flight.
+
+SORT lt_flight BY total_weight DESCENDING.
+
+LOOP AT lt_flight INTO wa_flight WHERE total_weight > 18000.
+  WRITE: / 'Flight:',   wa_flight-flight,
+     ', Weight:',   | { wa_flight-weight DECIMALS = 0 }|,
+     ', Person:',   | { wa_flight-person }|,
+     ' , Total weight:', |{ wa_flight-total_weight DECIMALS = 0 }|.
+ENDLOOP.
