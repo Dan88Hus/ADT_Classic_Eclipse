@@ -1,0 +1,39 @@
+*&---------------------------------------------------------------------*
+*& Report zinternaltableexercise
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zinternaltableexercise.
+
+TYPES: BEGIN OF TY_SFLIGHT,
+       carrid TYPE s_carr_id,
+       connid TYPE s_conn_id,
+       price TYPE s_price,
+       end of TY_SFLIGHT.
+
+
+DATA : IT_SFLIGHT TYPE TABLE OF TY_SFLIGHT,
+        WA_SFLIGHT2 TYPE TABLE OF TY_SFLIGHT,
+       WA_SFLIGHT TYPE TY_SFLIGHT.
+
+SELECT carrid connid price FROM sflight INTO TABLE IT_SFLIGHT.
+
+LOOP AT IT_SFLIGHT INTO WA_SFLIGHT from 1 TO 200.
+
+    WRITE: / 'Flight:',   WA_SFLIGHT-carrid,
+         ' Weight:',   WA_SFLIGHT-connid,
+         ', Maxcases:', WA_SFLIGHT-price.
+" to make 2nd table
+ append WA_SFLIGHT TO WA_SFLIGHT2. " but wa_sflight2
+" must be declared into data section
+
+ENDLOOP.
+
+"SORT wa_sflight2 by price DESCENDING.
+
+
+LOOP AT wa_sflight2 INTO WA_SFLIGHT from 1 to 200.
+       WRITE: / 'Flight:',   WA_SFLIGHT-carrid,
+         ' Weight:',   WA_SFLIGHT-connid,
+         ', Maxcases:', WA_SFLIGHT-price.
+endloop.

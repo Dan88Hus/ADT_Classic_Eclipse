@@ -1,0 +1,49 @@
+*&---------------------------------------------------------------------*
+*& Report zweek3_ex2
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zweek3_ex2.
+
+TYPES: BEGIN OF flight,
+         flight    TYPE ZCHAR4INPUT,
+         weight    TYPE ZINT4INPUT,
+         suitcaseweight TYPE ZFLOAT34INPUT,
+         maxcases TYPE ZFLOAT34INPUT,
+       END OF flight.
+
+DATA: lt_flights TYPE TABLE OF flight,
+      ls_flight  TYPE flight.
+
+ls_flight-flight   = 'Flight 1'.
+ls_flight-weight   = 2000.    " kg (2t)
+ls_flight-suitcaseweight = 20.
+ls_flight-maxcases = ls_flight-weight / ls_flight-suitcaseweight.
+APPEND ls_flight TO lt_flights.
+
+ls_flight-flight   = 'Flight 2'.
+ls_flight-weight   = 4000.   " kg (10t)
+ls_flight-suitcaseweight = 41.
+ls_flight-maxcases = ls_flight-weight / ls_flight-suitcaseweight.
+APPEND ls_flight TO lt_flights.
+
+ls_flight-flight   = 'Flight 3'.
+ls_flight-weight   = 3000.
+ls_flight-suitcaseweight = 35.
+ls_flight-maxcases = ls_flight-weight / ls_flight-suitcaseweight.
+APPEND ls_flight TO lt_flights.
+
+ls_flight-flight   = 'Flight 4'.
+ls_flight-weight   = 900.
+ls_flight-suitcaseweight = '10.50'.
+ls_flight-maxcases = ls_flight-weight / ls_flight-suitcaseweight.
+APPEND ls_flight TO lt_flights.
+
+
+SORT lt_flights BY maxcases ASCENDING.
+
+LOOP AT lt_flights INTO ls_flight WHERE maxcases >= 5.
+  WRITE: / 'Flight:',   ls_flight-flight,
+         ', Weight:',   | { ls_flight-weight DECIMALS = 0 }|,
+         ' , Maxcases:', |{ ls_flight-maxcases DECIMALS = 0 }|.
+ENDLOOP.

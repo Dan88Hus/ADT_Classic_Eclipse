@@ -6,10 +6,10 @@
 REPORT zex3_week3.
 
 DATA:
-  input1   TYPE ZINT4INPUT VALUE 200,
-  input2   TYPE ZINT4INPUT VALUE 100,
-  operator TYPE ZCHAR4INPUT VALUE '+',
-  result   TYPE ZINT4INPUT VALUE 0.
+  input1   TYPE zint4input VALUE 200,
+  input2   TYPE zint4input VALUE 100,
+  operator TYPE zchar4input VALUE '+',
+  result   TYPE zint4input VALUE 0.
 
 CASE  operator.
   WHEN '+'.
