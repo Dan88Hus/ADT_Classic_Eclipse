@@ -1,0 +1,65 @@
+*&---------------------------------------------------------------------*
+*& Report z_week4_ex2
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT z_week4_ex2.
+
+CONSTANTS person_weight TYPE zint4input VALUE 75.
+
+TYPES: BEGIN OF structure_flight,
+         flight       TYPE zchar4input,
+         person_A       TYPE zint4input,
+         person_B       TYPE zint4input,
+         person_C       TYPE zint4input,
+         weight       TYPE zint4input,
+         total_person_bandC TYPE zfloat34input,
+       END OF structure_flight.
+
+DATA: lt_flight TYPE TABLE OF structure_flight,
+      wa_flight TYPE structure_flight.
+
+wa_flight-flight = 'Flight 1'.
+wa_flight-person_A = 250.
+wa_flight-person_B = 123.
+wa_flight-person_C = 257.
+wa_flight-weight = 2000. "kg
+wa_flight-total_person_bandc =  wa_flight-person_B + wa_flight-person_C.
+APPEND wa_flight TO lt_flight.
+
+wa_flight-flight = 'Flight 2'.
+wa_flight-person_A = 290.
+wa_flight-person_B = 253.
+wa_flight-person_C = 359.
+wa_flight-weight = 1000. "kg
+wa_flight-total_person_bandc =  wa_flight-person_B + wa_flight-person_C.
+APPEND wa_flight TO lt_flight.
+
+wa_flight-flight = 'Flight 3'.
+wa_flight-person_A = 190.
+wa_flight-person_B = 215.
+wa_flight-person_C = 123.
+wa_flight-weight = 3000. "kg
+wa_flight-total_person_bandc =  wa_flight-person_B + wa_flight-person_C.
+APPEND wa_flight TO lt_flight.
+
+wa_flight-flight = 'Flight 4'.
+wa_flight-person_A = 175.
+wa_flight-person_B = 305.
+wa_flight-person_C = 30.
+wa_flight-weight = 4000. "kg
+wa_flight-total_person_bandc =  wa_flight-person_B + wa_flight-person_C.
+APPEND wa_flight TO lt_flight.
+
+
+SORT lt_flight BY total_person_bandc DESCENDING.
+
+
+LOOP AT lt_flight INTO wa_flight.
+  WRITE: / 'Flight:',   wa_flight-flight,
+     ', Weight:',   | { wa_flight-weight }|,
+     ', PersonA:',   | { wa_flight-person_A }|,
+     ', PersonB:',   | { wa_flight-person_B }|,
+     ', PersonC:',   | { wa_flight-person_C }|,
+     ' , Total weight:', |{ wa_flight-total_person_bandc }|.
+ENDLOOP.
