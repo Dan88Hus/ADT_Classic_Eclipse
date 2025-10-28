@@ -1,0 +1,78 @@
+*&---------------------------------------------------------------------*
+*& Report z_week4_exercises
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT z_week4_exercises.
+*&---------------------------------------------------------------------*
+*& Exercise
+*1) Explain the releationship between transport request, package and data element
+*2) Explain the relationship between variable, table type and data element
+*3) Provide a valid data declaration in ABAP for the following five variables
+* flight_date: a date
+* cityto: a string with 20 characters
+* seats: an integer number
+* flight_weight: data type flight_weight
+* cityto: same data type as the field cityfrom of database table sflight
+*4) Provide a valid data declaration in ABAP for a structure flight that consists oft he following
+*fields:
+* bookid : an integer number
+* flight_date: a date
+* flight_number: a string with 6 characters
+*5) Create a work area structure wa_flight that corresponds to flight of task 4
+* Assign the value ‚1234‘ to bookid
+* Add the value ‚1‘ to bookid.
+* Assign the value ‚21.01.2023‘ to flight_date
+* Assign the value ‚A12345B‘ to flight_number
+* Print out bookid to the screen
+*&---------------------------------------------------------------------*
+
+*Data Element is a repository object in the ABAP Dictionary. It defines the semantic meaning of a field.
+*A Package is a logical grouping of development objects. Think of a package as a folder or namespace for related objects.
+*    In short: the data element “lives inside” a package.
+*A Transport Request (TR) is a record of changes you make in the SAP system.
+*When you create or modify a development object (like a data element), SAP asks you to assign your change to a transport request.
+*    The transport request acts as a container for changes, so you can export them from one system to another (e.g., from DEV → QAS → PRD).
+*    Each TR has:
+*    A header (with owner, target system, etc.)
+*    Tasks (usually per developer)
+*    A list of changed objects, including their packages
+* ------------------
+*Data Element — the Semantic Layer
+*It specifies field labels, documentation, and links to a domain (technical type & length).
+*    Think of it as the blueprint for a single field.
+*A Table Type defines a structure or internal table in ABAP.
+*    Table types define how multiple instances of a type are organized in memory.
+*Variable is a concrete instance of a type in ABAP.
+*-------------------------------
+*DATA: flight_date TYPE D.
+*DATA: cityto TYPE C LENGTH 20.
+*DATA: seats TYPE I.
+*DATA: flight_weight TYPE flight_weight.
+*DATA: cityto TYPE sflight-cityfrom.
+*-------------------------------
+*TYPES: BEGIN OF flight,
+*         bookid        TYPE I,
+*         flight_date   TYPE D,
+*         flight_number TYPE C LENGTH 6,
+*       END OF flight.
+*DATA: it_flight TYPE TABLE OF flight,
+*       ls_flight TYPE flight.
+*       ls_flight is now a work area (structure variable)
+*---------------------------------
+*TYPES: BEGIN OF flight,
+*         bookid        TYPE I,
+*         flight_date   TYPE D,
+*         flight_number TYPE C LENGTH 6,
+*       END OF flight.
+*
+*DATA: wa_flight TYPE flight.
+*
+*" Assign values
+*wa_flight-bookid = 1234.
+*wa_flight-bookid = wa_flight-bookid + 1.
+*wa_flight-flight_date = '20230121'.
+*wa_flight-flight_number = 'A12345B'.
+*
+*" Output bookid
+*WRITE: / 'Book ID:', wa_flight-bookid.
